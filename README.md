@@ -102,7 +102,7 @@ The Inventory Management System is designed to manage inventory across multiple 
 
 1. **Clone and navigate to project:**
    ```bash
-   git clone <your-repo>
+   git clone <our-repo>
    cd gui
    ```
 
@@ -111,7 +111,7 @@ The Inventory Management System is designed to manage inventory across multiple 
    # Copy example configuration
    cp .env.example .env
    
-   # Edit .env with your settings (optional - defaults work for local dev)
+   # Edit .env with our settings (optional - defaults work for local dev)
    # For production: update VITE_API_URL, CORS_ORIGINS, DATABASE_URL
    ```
 
@@ -323,10 +323,10 @@ PYTHONUNBUFFERED=1
 DATABASE_URL=sqlite:///./inventory.db
 
 # Frontend
-VITE_API_URL=http://api.yourdomain.com
+VITE_API_URL=http://api.ourdomain.com
 
 # Security (production)
-CORS_ORIGINS=https://yourdomain.com
+CORS_ORIGINS=https://ourdomain.com
 ```
 
 ### Database Backup
@@ -430,10 +430,10 @@ cp .env.example .env
 
 ### Production Deployment Configuration
 
-1. **Update `.env` for your domain:**
+1. **Update `.env` for our domain:**
    ```env
-   VITE_API_URL=https://api.yourdomain.com
-   CORS_ORIGINS=https://yourdomain.com,https://api.yourdomain.com
+   VITE_API_URL=https://api.ourdomain.com
+   CORS_ORIGINS=https://ourdomain.com,https://api.ourdomain.com
    DATABASE_URL=postgresql://user:password@db:5432/inventory
    ```
 
@@ -606,7 +606,7 @@ jobs:
 
 ## 📄 License
 
-[Specify your license here]
+[Specify our license here]
 
 ## 👥 Support
 
