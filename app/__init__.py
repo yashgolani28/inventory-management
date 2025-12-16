@@ -1,0 +1,2 @@
+"""FastAPI inventory app package."""
+
