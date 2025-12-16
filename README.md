@@ -604,10 +604,6 @@ jobs:
 3. Test thoroughly (local and Docker)
 4. Submit pull request with detailed description
 
-## 📄 License
-
-[Specify our license here]
-
 ## 👥 Support
 
 For issues or questions:
