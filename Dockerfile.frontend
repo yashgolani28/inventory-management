@@ -7,11 +7,14 @@ WORKDIR /app
 # Copy package files
 COPY frontend/package*.json ./
 
-# Install dependencies
-RUN npm ci
+# Install dependencies (including devDependencies)
+RUN npm install
 
-# Copy source code
-COPY frontend/ ./
+# Copy only source code (not node_modules)
+COPY frontend/src ./src
+COPY frontend/index.html .
+COPY frontend/tsconfig.json .
+COPY frontend/vite.config.ts .
 
 # Build application
 RUN npm run build
