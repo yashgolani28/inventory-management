@@ -19,9 +19,12 @@ def _generic_routes(model: Type[ModelType], prefix: str, tags: list[str]) -> API
     def list_items(
         session: Session = Depends(get_session),
         limit: int = Query(500, le=50000),
-        offset: int = Query(0, ge=0),
+        offset: int | None = Query(None, ge=0),
+        skip: int | None = Query(None, ge=0),
     ):
-        stmt = select(model).offset(offset).limit(limit)
+        eff_offset = offset if offset is not None else (skip or 0)
+        stmt = select(model).offset(eff_offset).limit(limit)
+
         return session.exec(stmt).all()
 
     @router.get("/{item_id}", response_model=model)
@@ -98,10 +101,12 @@ component_router = APIRouter(prefix="/components", tags=["Components"])
 def list_components(
     session: Session = Depends(get_session),
     limit: int = Query(200, le=50000),
-    offset: int = Query(0, ge=0),
+    offset: int | None = Query(None, ge=0),
+    skip: int | None = Query(None, ge=0),
 ):
     # Fetch components with pagination
-    stmt = select(models.Component).offset(offset).limit(limit)
+    eff_offset = offset if offset is not None else (skip or 0)
+    stmt = select(models.Component).offset(eff_offset).limit(limit)
     comps = session.exec(stmt).all()
     
     # Get all component IDs to fetch credentials in bulk (avoid N+1 query)
