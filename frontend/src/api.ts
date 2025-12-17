@@ -9,9 +9,11 @@ export type EntityName =
   | "components"
   | "credentials";
 
-export async function fetchEntities(entity: EntityName, skip: number = 0) {
-  const limit = entity === "components" ? 200 : 500; // Reduce limit for components due to credentials join
-  const res = await fetch(`${BASE_URL}/${entity}/?limit=${limit}&skip=${skip}`);
+export async function fetchEntities(entity: EntityName, offset: number = 0, limitOverride?: number) {
+  const limit = limitOverride ?? (entity === "components" ? 200 : 500);
+  const res = await fetch(
+    `${BASE_URL}/${entity}/?limit=${limit}&offset=${offset}&skip=${offset}`,
+  );
   if (!res.ok) throw new Error(`Failed to fetch ${entity}`);
   return res.json();
 }
